@@ -22,7 +22,7 @@ router = routers.DefaultRouter()
 router.register(r'users',views.UserViewSet)
 router.register(r"groups", views.GroupViewSet)
 router.register(r"movies", views.MovieViewSet)
-router.register(r'ratings',views.RatingViewSet)
+router.register(r"ratings", views.RatingViewSet)
 router.register(r'characters',views.CharacterViewSet)
 # Setup automatic URL routing
 # Additionally, we include login URLs for the browsable API

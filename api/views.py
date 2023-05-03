@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User,Group
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, GroupSerializer, RatingSerializer,MovieSerializer,CharacterSerializer
 from .models import Movie,Rating,Character
@@ -10,7 +11,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all()
     serializer_class = UserSerializer    
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -26,6 +27,7 @@ class MovieViewSet(viewsets.ModelViewSet):
     """
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    pagination_class = None
     def get_paginated_response(self, data):
         return Response(data)
     
@@ -44,5 +46,6 @@ class CharacterViewSet(viewsets.ModelViewSet):
     """
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
+    pagination_class = None
     def get_paginated_response(self, data):
         return Response(data)
